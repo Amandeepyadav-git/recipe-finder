@@ -1,9 +1,9 @@
 const express = require("express");
+const axios = require("axios");
 const path = require("path");
 const fs = require("fs");
 const app = express();
 const port = 3000;
-
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -22,17 +22,25 @@ app.get("/index", (req, res)=>{
     res.render("index")
 })
 
-app.get("/recipe", (req, res)=>{
-    res.render("recipe")
-})
+app.get("/recipe", (req, res) => {
+    res.render("recipe", {
+        recipe: null
+    });
+});
 
 app.post("/recipe",async (req, res)=>{
+let search = req.body;
+console.log(search);
+try {
+     const result = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
 
-   const { "search-Item": searchItem } = req.body;
-//    console.log(searchItem);
-    const recipes = await Recipes.find({
-    })
-    console.log(recipes);
+        const recipe = result.data.meals[0];
+
+        res.render("recipe", { recipe });
+} catch{
+     console.log(err);
+     res.send("Error");
+}
 })
 
 app.listen(port, () => {

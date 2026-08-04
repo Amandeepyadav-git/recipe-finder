@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const initData = require("./data.js")
+const initData = require("./data.js");
 const recipe = require("../Models/recipe.js")
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/recipe";
@@ -20,3 +20,4 @@ const initDB = async () => {
     await recipe.insertMany(initData.data);
     console.log("Data was initialized");
 };
+
