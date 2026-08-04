@@ -29,7 +29,7 @@ app.get("/recipe", (req, res) => {
 });
 
 app.post("/recipe",async (req, res)=>{
-let search = req.body;
+let search = req.body["search-Item"];
 console.log(search);
 try {
      const result = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
@@ -38,8 +38,7 @@ try {
 
         res.render("recipe", { recipe });
 } catch{
-     console.log(err);
-     res.send("Error");
+     res.render("error", { search } );
 }
 })
 

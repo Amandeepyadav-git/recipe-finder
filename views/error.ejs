@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Not Found</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+</head>
+
+<body class="bg-orange-50 min-h-screen flex flex-col">
+
+    <%- include("partials/navbar") %>
+
+    <main class="flex-grow flex items-center justify-center px-6 mt-5">
+
+        <div class="bg-white shadow-xl rounded-3xl p-10 max-w-xl w-full text-center">
+
+            <div class="text-7xl mb-6">
+                🍽️❌
+            </div>
+
+            <h1 class="text-4xl font-bold text-orange-500 mb-4">
+                Oops! Recipe Not Found
+            </h1>
+
+            <p class="text-gray-600 text-lg leading-8 mb-8">
+                We searched our kitchen, checked every cookbook, and even asked the chef...
+                but we couldn't find a recipe matching your search.
+            </p>
+
+            <% if(search){ %>
+                <p class="text-lg mb-8">
+                    You searched for:
+                    <span class="font-bold text-orange-500">
+                        "<%= search %>"
+                    </span>
+                </p>
+            <% } %>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+
+                <a href="/recipe"
+                    class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full transition">
+                    🔍 Search Again
+                </a>
+
+                <a href="/"
+                    class="border border-orange-500 text-orange-500 hover:bg-orange-100 px-6 py-3 rounded-full transition">
+                    🏠 Home
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <%- include("partials/footer") %>
+
+</body>
+</html>
