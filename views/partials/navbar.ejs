@@ -5,82 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About-FYR</title>
     <link rel="stylesheet" href="style.css" />
+    
+    <!-- Font Awesome CDN (v6.5.1) -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
-      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    /> <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
-  <nav class="w-full bg-white shadow-md sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <nav class="w-full bg-white shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
-    <!-- Logo -->
-    <div class="flex items-center gap-3">
-      <i class="fa-solid fa-kitchen-set text-3xl text-orange-500"></i>
-      <h1 class="text-2xl font-bold text-gray-800">
-        Tasty <span class="text-orange-500">Recipe</span>
-      </h1>
-    </div>
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-utensils text-3xl text-orange-500"></i>
+          <h1 class="text-2xl font-bold text-gray-800">
+            Tasty <span class="text-orange-500">Recipe</span>
+          </h1>
+        </div>
 
-    <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center gap-10">
-      <a href="/index" class="text-gray-700 hover:text-orange-500 font-medium transition duration-300">
-        Home
-      </a>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center gap-10">
+          <a href="/index" class="text-gray-700 hover:text-orange-500 font-medium transition duration-300">
+            Home
+          </a>
+          <a href="/about" class="text-gray-700 hover:text-orange-500 font-medium transition duration-300">
+            About
+          </a>
+          <a href="/recipe" class="text-gray-700 hover:text-orange-500 font-medium transition duration-300">
+            Recipes
+          </a>
+        </div>
 
-      <a href="/about" class="text-gray-700 hover:text-orange-500 font-medium transition duration-300">
-        About
-      </a>
+        <!-- Desktop Button -->
+        <div class="hidden md:block">
+          <button
+            onclick="window.location.href='/recipe'"
+            class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-semibold transition duration-300 shadow-md hover:shadow-lg cursor-pointer">
+            Browse Recipes
+          </button>
+        </div>
 
-      <a href="/recipe" class="text-gray-700 hover:text-orange-500 font-medium transition duration-300">
-        Recipes
-      </a>
-    </div>
+        <!-- Mobile Menu Icon -->
+        <button id="menuBtn" class="md:hidden text-2xl text-gray-700 focus:outline-none cursor-pointer" aria-label="Toggle Navigation Menu">
+          <i id="menuIcon" class="fa-solid fa-bars-staggered transition-transform duration-300"></i>
+        </button>
 
-    <!-- Desktop Button -->
-    <div class="hidden md:block">
-      <button
-        onclick="window.location.href='/recipe'"
-        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-semibold transition duration-300 shadow-md hover:shadow-lg cursor-pointer">
-        Browse Recipes
-      </button>
-    </div>
+      </div>
 
-    <!-- Mobile Menu Icon -->
-    <button id="menuBtn" class="md:hidden text-2xl text-gray-700">
-      <i class="fa-solid fa-bars-staggered"></i>
-    </button>
+      <!-- Animated Mobile Menu Container -->
+      <div 
+        id="mobileMenu" 
+        class="grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-in-out md:hidden bg-white border-t overflow-hidden"
+      >
+        <div class="min-h-0">
+          <a href="/" class="block px-6 py-4 hover:bg-orange-50 hover:text-orange-500 transition">
+            Home
+          </a>
+          <a href="/about" class="block px-6 py-4 hover:bg-orange-50 hover:text-orange-500 transition">
+            About
+          </a>
+          <a href="/recipe" class="block px-6 py-4 hover:bg-orange-50 hover:text-orange-500 transition">
+            Recipes
+          </a>
+          <div class="p-4">
+            <button
+              onclick="window.location.href='/recipe'"
+              class="w-full bg-orange-500 text-white py-3 rounded-full font-semibold hover:bg-orange-600 transition">
+              Browse Recipes
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-  </div>
+    <!-- JavaScript to toggle animation classes -->
+    <script>
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuIcon = document.getElementById('menuIcon');
 
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+      menuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('grid-rows-[1fr]');
 
-    <a href="/"
-      class="block px-6 py-4 hover:bg-orange-50 hover:text-orange-500 transition">
-      Home
-    </a>
-
-    <a href="/about"
-      class="block px-6 py-4 hover:bg-orange-50 hover:text-orange-500 transition">
-      About
-    </a>
-
-    <a href="/recipe"
-      class="block px-6 py-4 hover:bg-orange-50 hover:text-orange-500 transition">
-      Recipes
-    </a>
-
-    <div class="p-4">
-      <button
-        onclick="window.location.href='/recipe'"
-        class="w-full bg-orange-500 text-white py-3 rounded-full font-semibold hover:bg-orange-600 transition">
-        Browse Recipes
-      </button>
-    </div>
-
-  </div>
-</nav>
+        if (isOpen) {
+          // Close menu animation
+          mobileMenu.classList.replace('grid-rows-[1fr]', 'grid-rows-[0fr]');
+          mobileMenu.classList.replace('opacity-100', 'opacity-0');
+          menuIcon.className = 'fa-solid fa-bars-staggered transition-transform duration-300';
+        } else {
+          // Open menu animation
+          mobileMenu.classList.replace('grid-rows-[0fr]', 'grid-rows-[1fr]');
+          mobileMenu.classList.replace('opacity-0', 'opacity-100');
+          menuIcon.className = 'fa-solid fa-xmark transition-transform duration-300';
+        }
+      });
+    </script>
+  </body>
+</html>
